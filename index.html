@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Women's Museum Albania</title>
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+      padding: 0 1rem;
+    }
+
+    h1, h2 {
+      font-family: 'Georgia', serif;
+    }
+
+    /* Navbar */
+    nav {
+      background: #222;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-logo {
+      font-size: 1.5rem;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ff6f61;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: #222;
+      color: #fff;
+      padding: 5rem 1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    /* About Us Section */
+    .about {
+      background: #fff;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #222;
+    }
+
+    .about p {
+      max-width: 800px;
+      margin: auto;
+      font-size: 1.1rem;
+      color: #666;
+    }
+
+    /* History of the Museum Section */
+    .history {
+      background: #fff;
+      padding: 3rem 1rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .history h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #222;
+    }
+
+    .history p {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    /* Exhibits Section */
+    .exhibits {
+      background: #ff6f61;
+      color: #fff;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+
+    .exhibits h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .exhibit-card {
+      display: inline-block;
+      background: #fff;
+      color: #333;
+      width: 250px;
+      padding: 1.5rem;
+      margin: 1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .exhibit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .exhibit-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .exhibit-card p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* Footer Section */
+    footer {
+      background: #222;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 1rem;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .about p {
+        font-size: 1rem;
+      }
+
+      .history p {
+        font-size: 1rem;
+      }
+
+      .exhibits .exhibit-card {
+        width: 100%;
+        margin: 1rem 0;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="navbar-logo">Women's Museum Albania</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#history">History</a></li>
+      <li><a href="#exhibits">Exhibits</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Celebrating Albanian Women</h1>
+    <p>A journey through the centuries, honoring women's role in Albania's history.</p>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" class="about">
+    <h2>About Us</h2>
+    <p>The Women's Museum in Albania is dedicated to exploring the contributions of women throughout Albania's history. From ancient Illyria to post-communist times, the museum highlights the role of women across different historical periods such as the Byzantine, Ottoman, Monarchy, and Communist systems.</p>
+  </section>
+
+  <!-- History of the Museum Section -->
+  <section id="history" class="history">
+    <h2>Our Story</h2>
+    <p>Founded by Elsa Ballauri, the museum stands as a testament to the strength and resilience of Albanian women. Elsa Ballauri, an avid collector and human rights advocate, created the museum to preserve the memory of the often-overlooked struggles and achievements of women throughout Albania’s diverse and tumultuous history.</p>
+    <p>Located in the heart of Tirana on Myslym Shyri Road, this private institution offers a unique look into Albania's social and political transformation, with a special focus on the hardships faced by women during Communist rule, as well as their contributions across different periods of history.</p>
+  </section>
+
+  <!-- Exhibits Section -->
+  <section id="exhibits" class="exhibits">
+    <h2>Current Exhibits</h2>
+    <div class="exhibit-card">
+      <h3>Women of Illyria</h3>
+      <p>Explore the role of women in ancient Illyrian societies, their leadership, and influence.</p>
+    </div>
+    <div class="exhibit-card">
+      <h3>Byzantine Empresses</h3>
+      <p>Discover the powerful women who shaped the Byzantine Empire and their influence in Albania.</p>
+    </div>
+    <div class="exhibit-card">
+      <h3>Ottoman Women of Albania</h3>
+      <p>Learn about the challenges and triumphs of Albanian women during Ottoman rule.</p>
+    </div>
+    <div class="exhibit-card">
+      <h3>Women Under Communism</h3>
+      <p>A critical examination of the persecution of women during Albania's Communist era.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>Women's Museum Albania | Myslym Shyri Road, Tirana</p>
+    <p>Email: info@womensmuseumalbania.org</p>
+    <p>Website: <a href="https://www.womensmuseumalbania.org" target="_blank" style="color: #ff6f61;">www.womensmuseumalbania.org</a></p>
+  </footer>
+</body>
+</html>
