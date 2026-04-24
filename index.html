@@ -3,261 +3,555 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Women's Museum Albania</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>MiG — Muzeu i Gruas | Women's Museum Albania</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    /* Global Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    :root {
+      --black:       #0a0a0a;
+      --white:       #ffffff;
+      --blue:        #003399;
+      --blue-hover:  #002277;
+      --gray-dark:   #2c2c2c;
+      --gray-mid:    #6b6b6b;
+      --gray-light:  #f7f7f5;
+      --gray-soft:   #f2f2f0;
+      --border:      #e4e4e0;
+      --border-dark: #1e1e1e;
+      --text-body:   #2c2c2c;
+      --text-muted:  #6b6b6b;
+      --off-white:   #f2f2f2;
+      --sp-1: 8px; --sp-2: 16px; --sp-3: 24px; --sp-4: 32px;
+      --sp-5: 40px; --sp-6: 48px; --sp-8: 64px; --sp-10: 80px; --sp-12: 96px;
     }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--white); color: var(--black); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      line-height: 1.6;
-      padding: 0 1rem;
-    }
+    /* TOP STRIP */
+    .top-strip { background: var(--black); color: #999; font-size: 0.68rem; letter-spacing: 0.09em; text-transform: uppercase; padding: 10px var(--sp-4); display: flex; justify-content: space-between; align-items: center; }
+    .top-strip a { color: #999; transition: color 0.2s; }
+    .top-strip a:hover { color: var(--white); }
 
-    h1, h2 {
-      font-family: 'Georgia', serif;
-    }
+    /* NAV */
+    nav { border-bottom: 1.5px solid var(--black); position: sticky; top: 0; z-index: 100; background: var(--white); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0 var(--sp-4); height: 60px; }
+    .nav-logo img { height: 34px; width: auto; display: block; }
+    .nav-links { display: flex; list-style: none; height: 100%; align-items: stretch; }
+    .nav-links li { position: relative; display: flex; align-items: stretch; }
+    .nav-links li > a, .nav-links li > span { display: flex; align-items: center; padding: 0 var(--sp-2); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.03em; color: var(--gray-dark); cursor: pointer; border-left: 1px solid var(--black); position: relative; transition: color 0.2s; }
+    .nav-links li > a::after, .nav-links li > span::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--blue); transform: scaleX(0); transition: transform 0.25s ease; }
+    .nav-links li > a:hover, .nav-links li > span:hover { color: var(--blue); }
+    .nav-links li > a:hover::after, .nav-links li > span:hover::after { transform: scaleX(1); }
+    .has-drop:hover .drop { display: block; }
+    .drop { display: none; position: absolute; top: 100%; left: 0; background: var(--white); border: 1.5px solid var(--black); min-width: 200px; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .drop a { display: block; padding: 10px var(--sp-2); font-size: 0.75rem; font-weight: 400; letter-spacing: 0.02em; border-bottom: 1px solid var(--border); color: var(--gray-dark); transition: background 0.15s, color 0.15s; }
+    .drop a:last-child { border-bottom: none; }
+    .drop a:hover { background: var(--black); color: var(--white); }
+    .nav-actions { display: flex; align-items: center; gap: var(--sp-1); padding-left: var(--sp-2); border-left: 1px solid var(--black); height: 100%; }
+    .nav-btn { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 8px 18px; border: 1.5px solid var(--black); cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s; display: inline-flex; align-items: center; }
+    .nav-btn:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.12); text-decoration: none; }
+    .nav-btn.outline { background: var(--white); color: var(--black); }
+    .nav-btn.outline:hover { background: var(--black); color: var(--white); }
+    .nav-btn.filled { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .nav-btn.filled:hover { background: var(--blue-hover); border-color: var(--blue-hover); }
 
-    /* Navbar */
-    nav {
-      background: #222;
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
+    /* HERO */
+    .hero { background: var(--blue); text-align: center; padding: var(--sp-12) var(--sp-4) var(--sp-10); border-bottom: 1.5px solid var(--black); }
+    .hero-eyebrow { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: var(--sp-4); }
+    .hero-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2.6rem, 5vw, 5rem); font-weight: 600; line-height: 1.1; color: var(--white); margin-bottom: var(--sp-4); letter-spacing: -0.01em; }
+    .hero-title em { font-style: italic; font-weight: 400; color: rgba(180,210,255,0.9); }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; color: rgba(255,255,255,0.75); max-width: 480px; margin: 0 auto var(--sp-6); line-height: 1.8; letter-spacing: 0.01em; }
+    .hero-btns { display: flex; gap: var(--sp-2); justify-content: center; flex-wrap: wrap; }
+    .btn { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 12px 28px; display: inline-flex; align-items: center; border: 1.5px solid; cursor: pointer; transition: background 0.22s, color 0.22s, border-color 0.22s, box-shadow 0.22s; }
+    .btn:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.15); text-decoration: none; }
+    .btn-white { background: var(--white); color: var(--blue); border-color: var(--white); }
+    .btn-white:hover { background: transparent; color: var(--white); }
+    .btn-outline-white { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.4); }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.8); }
+    .btn-dark { background: var(--black); color: var(--white); border-color: var(--black); }
+    .btn-dark:hover { background: var(--blue); border-color: var(--blue); }
+    .btn-light { background: var(--white); color: var(--black); border-color: var(--black); }
+    .btn-light:hover { background: var(--black); color: var(--white); }
+    .btn-blue { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .btn-blue:hover { background: var(--blue-hover); border-color: var(--blue-hover); }
 
-    .navbar-logo {
-      font-size: 1.5rem;
-      color: #fff;
-      font-weight: bold;
-    }
+    /* BADGES */
+    .badges-bar { display: flex; justify-content: center; gap: var(--sp-3); flex-wrap: wrap; padding: 14px var(--sp-4); border-bottom: 1px solid var(--border); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); background: var(--gray-soft); }
 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-    }
+    /* SECTION HEADER */
+    .sec-head { display: flex; justify-content: space-between; align-items: center; padding: 14px var(--sp-4); border-bottom: 1px solid var(--border); border-top: 2px solid var(--black); }
+    .sec-head h2 { font-family: 'Inter', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); }
+    .sec-head a { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-mid); text-decoration: underline; transition: color 0.2s; }
+    .sec-head a:hover { color: var(--blue); }
 
-    .nav-links a {
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
+    /* ABOUT */
+    #about { border-bottom: 2px solid var(--black); background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+    .about-col { padding: var(--sp-6) var(--sp-4); border-right: 1px solid var(--border); }
+    .about-col:last-child { border-right: none; background: var(--black); }
+    .about-col h3 { font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: var(--sp-3); padding-bottom: var(--sp-2); border-bottom: 1px solid var(--border); }
+    .about-col:last-child h3 { color: #444; border-color: #222; }
+    .about-col p { font-size: 0.9rem; font-weight: 300; line-height: 1.85; color: var(--text-body); }
+    .about-col:last-child p { color: #aaa; }
+    .stat { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 600; line-height: 1; color: var(--white); margin-bottom: var(--sp-1); }
 
-    .nav-links a:hover {
-      color: #ff6f61;
-    }
+    /* FOUNDER */
+    #founder { border-bottom: 2px solid var(--black); background: var(--gray-light); }
+    .founder-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .founder-text { padding: var(--sp-10) var(--sp-8); border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
+    .founder-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: var(--sp-3); }
+    .founder-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 2.5vw, 2.4rem); font-weight: 400; line-height: 1.25; color: var(--black); margin-bottom: var(--sp-4); }
+    .founder-title em { font-style: italic; color: var(--blue); }
+    .founder-body { font-size: 0.92rem; font-weight: 300; line-height: 1.9; color: var(--text-body); margin-bottom: var(--sp-4); }
+    .founder-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 600; color: var(--black); }
+    .founder-role { font-size: 0.78rem; font-weight: 300; color: var(--gray-mid); margin-top: 4px; letter-spacing: 0.03em; }
+    .founder-image { background: #d8e4f0; display: flex; align-items: center; justify-content: center; min-height: 420px; }
+    .founder-image-placeholder { font-size: 0.78rem; color: var(--gray-mid); font-style: italic; text-align: center; padding: var(--sp-4); }
 
-    /* Hero Section */
-    .hero {
-      background: #222;
-      color: #fff;
-      padding: 5rem 1rem;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
+    /* EDITORIAL */
+    #editorial { background: var(--white); border-bottom: 2px solid var(--black); padding: var(--sp-12) var(--sp-4); text-align: center; }
+    .editorial-inner { max-width: 680px; margin: 0 auto; }
+    .editorial-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: var(--sp-4); }
+    .editorial-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 400; line-height: 1.25; color: var(--black); margin-bottom: var(--sp-4); letter-spacing: -0.01em; }
+    .editorial-title em { font-style: italic; color: var(--blue); }
+    .editorial-body { font-size: 1rem; font-weight: 300; line-height: 1.9; color: var(--text-body); margin-bottom: var(--sp-5); }
 
-    .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
+    /* EXHIBITIONS */
+    #exhibitions { border-bottom: 2px solid var(--black); background: var(--white); }
+    .exh-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .exh-card { border-right: 1px solid var(--border); overflow: hidden; }
+    .exh-card:last-child { border-right: none; }
+    .exh-img-wrap { position: relative; overflow: hidden; aspect-ratio: 4/3; border-bottom: 1px solid var(--border); }
+    .exh-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--gray-mid); font-style: italic; letter-spacing: 0.04em; transition: transform 0.35s ease; }
+    .exh-card:nth-child(1) .exh-img-placeholder { background: linear-gradient(135deg, #c8d4e8 0%, #a8b8d0 100%); }
+    .exh-card:nth-child(2) .exh-img-placeholder { background: linear-gradient(135deg, #d4c8e0 0%, #b8a8cc 100%); }
+    .exh-card:nth-child(3) .exh-img-placeholder { background: linear-gradient(135deg, #c8dcd4 0%, #a8c4b8 100%); }
+    .exh-card:hover .exh-img-placeholder { transform: scale(1.04); }
+    .exh-body { padding: var(--sp-3); }
+    .exh-tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: var(--sp-1); }
+    .exh-tag.live { color: var(--blue); }
+    .exh-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; line-height: 1.3; margin-bottom: var(--sp-2); color: var(--black); }
+    .exh-desc { font-size: 0.82rem; font-weight: 300; color: var(--text-muted); line-height: 1.75; }
 
-    .hero p {
-      font-size: 1.2rem;
-      font-weight: 300;
-    }
+    /* COLLECTIONS STRIP */
+    #collections { border-bottom: 2px solid var(--black); background: var(--black); }
+    #collections .sec-head { background: var(--black); border-color: #222; }
+    #collections .sec-head h2 { color: var(--off-white); }
+    #collections .sec-head a { color: #444; }
+    #collections .sec-head a:hover { color: #aaa; }
+    .collections-grid { display: grid; grid-template-columns: repeat(5, 1fr); }
+    .collection-card { padding: var(--sp-5) var(--sp-3); border-right: 1px solid #1a1a1a; text-align: center; transition: background 0.2s; cursor: pointer; }
+    .collection-card:last-child { border-right: none; }
+    .collection-card:hover { background: #111; }
+    .collection-era { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; color: var(--off-white); margin-bottom: var(--sp-2); }
+    .collection-dates { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: #555; }
+    .collection-desc { font-size: 0.78rem; font-weight: 300; color: #666; line-height: 1.6; margin-top: var(--sp-2); }
 
-    /* About Us Section */
-    .about {
-      background: #fff;
-      padding: 3rem 1rem;
-      text-align: center;
-    }
+    /* EVENTS */
+    #events { border-bottom: 2px solid var(--black); background: var(--black); }
+    #events .sec-head { background: var(--black); border-color: #1e1e1e; }
+    #events .sec-head h2 { color: var(--off-white); }
+    #events .sec-head a { color: #444; }
+    #events .sec-head a:hover { color: #aaa; }
+    .event-row { display: grid; grid-template-columns: 140px 1fr 110px; align-items: center; gap: var(--sp-4); padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid #1a1a1a; transition: background 0.18s; }
+    .event-row:last-child { border-bottom: none; }
+    .event-row:hover { background: #111; }
+    .ev-date { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #4a4a4a; }
+    .ev-title { font-size: 0.88rem; font-weight: 300; color: var(--off-white); line-height: 1.5; }
+    .ev-tag { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; border: 1px solid #2a2a2a; padding: 4px 10px; text-align: center; transition: border-color 0.2s, color 0.2s; }
+    .event-row:hover .ev-tag { border-color: #444; color: var(--white); }
 
-    .about h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      color: #222;
-    }
+    /* VISIT */
+    #visit { border-bottom: 2px solid var(--black); background: var(--gray-light); }
+    .visit-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .visit-left { padding: var(--sp-6) var(--sp-4); border-right: 1px solid var(--border); background: var(--white); }
+    .visit-left h3 { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: var(--sp-4); padding-bottom: var(--sp-2); border-bottom: 1px solid var(--border); }
+    .dir-step { display: flex; gap: var(--sp-2); margin-bottom: var(--sp-3); }
+    .dir-num { font-size: 0.78rem; font-weight: 700; color: var(--blue); min-width: 20px; padding-top: 2px; }
+    .dir-txt { font-size: 0.88rem; font-weight: 300; line-height: 1.75; color: var(--text-body); }
+    .info-box { margin-top: var(--sp-4); padding: var(--sp-3); background: var(--gray-light); border-left: 3px solid var(--blue); }
+    .info-box-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: var(--sp-2); }
+    .info-box p { font-size: 0.82rem; font-weight: 300; line-height: 1.9; color: var(--text-body); }
+    .info-box a { color: var(--blue); text-decoration: underline; }
+    .visit-right { background: var(--gray-light); }
+    .vblock { padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid var(--border); background: var(--white); }
+    .vblock:nth-child(even) { background: var(--gray-light); }
+    .vblock:last-child { border-bottom: none; }
+    .vblock-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: var(--sp-2); }
+    .vblock p { font-size: 0.85rem; font-weight: 300; line-height: 1.85; color: var(--text-body); }
+    .vblock a { display: block; font-size: 0.85rem; font-weight: 300; line-height: 1.9; color: var(--blue); text-decoration: underline; transition: color 0.18s; }
+    .vblock a:hover { color: var(--blue-hover); }
+    .hours-row { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 300; padding: 5px 0; border-bottom: 1px solid var(--border); color: var(--text-body); }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row.closed { color: var(--gray-mid); }
 
-    .about p {
-      max-width: 800px;
-      margin: auto;
-      font-size: 1.1rem;
-      color: #666;
-    }
+    /* FOOTER */
+    footer { background: var(--black); color: var(--white); }
+    .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; border-bottom: 1px solid #1a1a1a; }
+    .fcol { padding: var(--sp-6) var(--sp-4); border-right: 1px solid #1a1a1a; }
+    .fcol:last-child { border-right: none; }
+    .fcol-label { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #444; margin-bottom: var(--sp-3); padding-bottom: var(--sp-2); border-bottom: 1px solid #1e1e1e; }
+    .fcol a { display: block; font-size: 0.82rem; font-weight: 300; color: #777; margin-bottom: var(--sp-1); transition: color 0.18s; }
+    .fcol a:hover { color: var(--white); }
+    .footer-bottom { padding: var(--sp-3) var(--sp-4); display: flex; justify-content: space-between; align-items: center; font-size: 0.68rem; font-weight: 300; color: #3a3a3a; letter-spacing: 0.03em; }
 
-    /* History of the Museum Section */
-    .history {
-      background: #fff;
-      padding: 3rem 1rem;
-      text-align: center;
-      margin-top: 3rem;
-    }
+    /* FADE IN */
+    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    .history h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      color: #222;
-    }
-
-    .history p {
-      font-size: 1.1rem;
-      color: #555;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    /* Exhibits Section */
-    .exhibits {
-      background: #ff6f61;
-      color: #fff;
-      padding: 3rem 1rem;
-      text-align: center;
-    }
-
-    .exhibits h2 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .exhibit-card {
-      display: inline-block;
-      background: #fff;
-      color: #333;
-      width: 250px;
-      padding: 1.5rem;
-      margin: 1rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      text-align: left;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .exhibit-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .exhibit-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .exhibit-card p {
-      font-size: 1rem;
-      color: #555;
-    }
-
-    /* Footer Section */
-    footer {
-      background: #222;
-      color: #fff;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-
-    footer p {
-      font-size: 1rem;
-    }
-
-    /* Mobile Responsiveness */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero p {
-        font-size: 1rem;
-      }
-
-      .about p {
-        font-size: 1rem;
-      }
-
-      .history p {
-        font-size: 1rem;
-      }
-
-      .exhibits .exhibit-card {
-        width: 100%;
-        margin: 1rem 0;
-      }
-
-      .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: center;
-      }
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .about-grid, .exh-grid, .visit-grid, .footer-grid, .founder-grid, .collections-grid { grid-template-columns: 1fr; }
+      .about-col, .exh-card, .fcol, .collection-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .visit-left { border-right: none; border-bottom: 1px solid var(--border); }
+      .event-row { grid-template-columns: 1fr; gap: var(--sp-1); }
+      .founder-text { padding: var(--sp-6) var(--sp-4); border-right: none; border-bottom: 1px solid var(--border); }
+      .founder-image { min-height: 260px; }
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav>
-    <div class="navbar-logo">Women's Museum Albania</div>
+
+<div class="top-strip">
+  <span>Rruga Shyqyri Berxolli, Tirana, Albania &nbsp;·&nbsp; <a href="tel:+355682023950">+355 68 202 3950</a></span>
+  <span><a href="https://instagram.com/mig_albania" target="_blank">@mig_albania</a> &nbsp;·&nbsp; <a href="mailto:info@womensmuseumalbania.org">info@womensmuseumalbania.org</a></span>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#"><img src="data:image/jpeg;base64,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" alt="MiG — Muzeu i Gruas" /></a>
     <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#history">History</a></li>
-      <li><a href="#exhibits">Exhibits</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li class="has-drop"><span>Visit ↓</span>
+        <div class="drop">
+          <a href="#visit">How to Find Us</a>
+          <a href="#visit">Plan Your Visit</a>
+          <a href="https://g.page/r/CQKsoFgxiEMgEBM/review" target="_blank">Leave a Review</a>
+        </div>
+      </li>
+      <li class="has-drop"><span>The Museum ↓</span>
+        <div class="drop">
+          <a href="#about">About Us</a>
+          <a href="#founder">Our Story</a>
+          <a href="#">Team</a>
+          <a href="#">Board of Directors</a>
+        </div>
+      </li>
+      <li class="has-drop"><span>Exhibitions ↓</span>
+        <div class="drop">
+          <a href="#exhibitions">Current</a>
+          <a href="#exhibitions">Coming Soon</a>
+          <a href="#exhibitions">Archives</a>
+        </div>
+      </li>
+      <li class="has-drop"><span>Collections ↓</span>
+        <div class="drop">
+          <a href="#collections">Antiquity / Illyria</a>
+          <a href="#collections">Byzantine</a>
+          <a href="#collections">Ottoman</a>
+          <a href="#collections">Monarchy</a>
+          <a href="#collections">Communism</a>
+        </div>
+      </li>
+      <li><a href="#events">Events &amp; News</a></li>
+      <li><a href="#">Store</a></li>
     </ul>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Celebrating Albanian Women</h1>
-    <p>A journey through the centuries, honoring women's role in Albania's history.</p>
-  </section>
-
-  <!-- About Us Section -->
-  <section id="about" class="about">
-    <h2>About Us</h2>
-    <p>The Women's Museum in Albania is dedicated to exploring the contributions of women throughout Albania's history. From ancient Illyria to post-communist times, the museum highlights the role of women across different historical periods such as the Byzantine, Ottoman, Monarchy, and Communist systems.</p>
-  </section>
-
-  <!-- History of the Museum Section -->
-  <section id="history" class="history">
-    <h2>Our Story</h2>
-    <p>Founded by Elsa Ballauri, the museum stands as a testament to the strength and resilience of Albanian women. Elsa Ballauri, an avid collector and human rights advocate, created the museum to preserve the memory of the often-overlooked struggles and achievements of women throughout Albania’s diverse and tumultuous history.</p>
-    <p>Located in the heart of Tirana on Myslym Shyri Road, this private institution offers a unique look into Albania's social and political transformation, with a special focus on the hardships faced by women during Communist rule, as well as their contributions across different periods of history.</p>
-  </section>
-
-  <!-- Exhibits Section -->
-  <section id="exhibits" class="exhibits">
-    <h2>Current Exhibits</h2>
-    <div class="exhibit-card">
-      <h3>Women of Illyria</h3>
-      <p>Explore the role of women in ancient Illyrian societies, their leadership, and influence.</p>
+    <div class="nav-actions">
+      <a class="nav-btn outline" href="#">Tickets</a>
+      <a class="nav-btn filled" href="#">Donate</a>
     </div>
-    <div class="exhibit-card">
-      <h3>Byzantine Empresses</h3>
-      <p>Discover the powerful women who shaped the Byzantine Empire and their influence in Albania.</p>
-    </div>
-    <div class="exhibit-card">
-      <h3>Ottoman Women of Albania</h3>
-      <p>Learn about the challenges and triumphs of Albanian women during Ottoman rule.</p>
-    </div>
-    <div class="exhibit-card">
-      <h3>Women Under Communism</h3>
-      <p>A critical examination of the persecution of women during Albania's Communist era.</p>
-    </div>
-  </section>
+  </div>
+</nav>
 
-  <!-- Footer -->
-  <footer id="contact">
-    <p>Women's Museum Albania | Myslym Shyri Road, Tirana</p>
-    <p>Email: info@womensmuseumalbania.org</p>
-    <p>Website: <a href="https://www.womensmuseumalbania.org" target="_blank" style="color: #ff6f61;">www.womensmuseumalbania.org</a></p>
-  </footer>
+<!-- HERO -->
+<section class="hero fade-in visible">
+  <p class="hero-eyebrow">Celebrating Albanian Women &nbsp;·&nbsp; Tirana, Albania</p>
+  <h1 class="hero-title">Women's History —<br><em>Preserved &amp; Told</em></h1>
+  <p class="hero-sub">A journey through the centuries, honouring the role of women across Albania's history — from ancient Illyria to the present day.</p>
+  <div class="hero-btns">
+    <a href="#visit" class="btn btn-white">Plan Your Visit</a>
+    <a href="#about" class="btn btn-outline-white">Discover the Museum</a>
+  </div>
+</section>
+
+<div class="badges-bar">
+  <span>🏳️‍🌈 LGBTQ+ Friendly</span><span>·</span>
+  <span>♀ Women Owned</span><span>·</span>
+  <span>📍 Tirana, Albania</span><span>·</span>
+  <span>✉ info@womensmuseumalbania.org</span>
+</div>
+
+<!-- ABOUT -->
+<section id="about" class="fade-in">
+  <div class="sec-head"><h2>The Museum</h2><a href="#">Learn More →</a></div>
+  <div class="about-grid">
+    <div class="about-col">
+      <h3>Who We Are</h3>
+      <p>The Women's Museum Albania — MiG (Muzeu i Gruas) — is dedicated to exploring the contributions of women throughout Albania's history. From ancient Illyria to post-communist times, the museum highlights the role of women across different historical periods: Byzantine, Ottoman, Monarchy, and Communist.</p>
+      <br>
+      <p>We believe history is incomplete without the stories of women. MiG exists to fill that gap — one story, one artifact, one voice at a time.</p>
+    </div>
+    <div class="about-col">
+      <h3>Our Collections</h3>
+      <p>Five permanent collections trace the full arc of women's experience in Albania and the wider region — from the ancient Illyrian world to life under communism.</p>
+      <br>
+      <p><strong>Antiquity &nbsp;·&nbsp; Byzantine &nbsp;·&nbsp; Ottoman &nbsp;·&nbsp; Monarchy &nbsp;·&nbsp; Communism</strong></p>
+      <br>
+      <p>Each era tells a different story. All of them matter.</p>
+    </div>
+    <div class="about-col">
+      <h3>By the Numbers</h3>
+      <div class="stat">1st</div>
+      <p style="margin-bottom:var(--sp-4);">Women's museum in Albania</p>
+      <div class="stat">5</div>
+      <p>Permanent historical collections</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder" class="fade-in">
+  <div class="sec-head"><h2>Our Story</h2><a href="#">Read More →</a></div>
+  <div class="founder-grid">
+    <div class="founder-text">
+      <p class="founder-label">Founded by</p>
+      <h2 class="founder-title">A testament to the strength<br>and <em>resilience of Albanian women</em></h2>
+      <p class="founder-body">The Women's Museum Albania was founded by <strong>Elsa Ballauri</strong> — an avid collector, journalist, and human rights advocate. She created the museum to preserve the memory of the often-overlooked struggles and achievements of women throughout Albania's diverse and tumultuous history.</p>
+      <p class="founder-body">Located in the heart of Tirana, this private institution offers a unique look into Albania's social and political transformation — with a special focus on the hardships faced by women during Communist rule, as well as their contributions across every period of the country's history.</p>
+      <div style="margin-top: var(--sp-4); padding-top: var(--sp-3); border-top: 1px solid var(--border);">
+        <div class="founder-name">Elsa Ballauri</div>
+        <div class="founder-role">Founder &amp; Director, Women's Museum Albania</div>
+      </div>
+    </div>
+    <div class="founder-image">
+      <div class="founder-image-placeholder">[ Add portrait of Elsa Ballauri ]</div>
+    </div>
+  </div>
+</section>
+
+<!-- EDITORIAL -->
+<section id="editorial" class="fade-in">
+  <div class="editorial-inner">
+    <p class="editorial-label">Our Mission</p>
+    <h2 class="editorial-title">History is incomplete<br>without <em>the stories of women</em></h2>
+    <p class="editorial-body">For centuries, the contributions, struggles, and triumphs of Albanian women have gone unrecorded. MiG was founded to change that — to create a permanent, dedicated space where these stories are not only preserved, but celebrated. From the ancient Illyrian world to life under communism, we document the full, unedited arc of women's experience in this region.</p>
+    <a href="#about" class="btn btn-dark">Read Our Story</a>
+  </div>
+</section>
+
+<!-- EXHIBITIONS -->
+<section id="exhibitions" class="fade-in">
+  <div class="sec-head"><h2>Exhibitions</h2><a href="#">View All →</a></div>
+  <div class="exh-grid">
+    <div class="exh-card">
+      <div class="exh-img-wrap"><div class="exh-img-placeholder">[ Add exhibition image ]</div></div>
+      <div class="exh-body">
+        <div class="exh-tag live">● On view now</div>
+        <div class="exh-title">Women Through the Ages</div>
+        <p class="exh-desc">An exploration of Albanian women's roles from antiquity to modernity — told through objects, photographs, and personal stories.</p>
+      </div>
+    </div>
+    <div class="exh-card">
+      <div class="exh-img-wrap"><div class="exh-img-placeholder">[ Add exhibition image ]</div></div>
+      <div class="exh-body">
+        <div class="exh-tag">Coming Soon</div>
+        <div class="exh-title">New Exhibition</div>
+        <p class="exh-desc">In development. Follow us on Instagram @mig_albania for announcements and previews.</p>
+      </div>
+    </div>
+    <div class="exh-card">
+      <div class="exh-img-wrap"><div class="exh-img-placeholder">[ Add exhibition image ]</div></div>
+      <div class="exh-body">
+        <div class="exh-tag">Archives</div>
+        <div class="exh-title">Past Exhibitions</div>
+        <p class="exh-desc">Browse our archive of past exhibitions. Available for research and educational purposes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section id="collections" class="fade-in">
+  <div class="sec-head"><h2>Collections</h2><a href="#">Explore All →</a></div>
+  <div class="collections-grid">
+    <div class="collection-card">
+      <div class="collection-era">Antiquity</div>
+      <div class="collection-dates">Ancient Illyria</div>
+      <div class="collection-desc">Women of the Illyrian world — their leadership, influence, and daily lives in ancient Albanian societies.</div>
+    </div>
+    <div class="collection-card">
+      <div class="collection-era">Byzantine</div>
+      <div class="collection-dates">4th – 15th century</div>
+      <div class="collection-desc">The powerful women who shaped the Byzantine Empire and left their mark on Albanian history.</div>
+    </div>
+    <div class="collection-card">
+      <div class="collection-era">Ottoman</div>
+      <div class="collection-dates">15th – 20th century</div>
+      <div class="collection-desc">The challenges and triumphs of Albanian women during five centuries of Ottoman rule.</div>
+    </div>
+    <div class="collection-card">
+      <div class="collection-era">Monarchy</div>
+      <div class="collection-dates">1912 – 1939</div>
+      <div class="collection-desc">Women's lives during the Kingdom of Albania — the first schools, new freedoms, and ongoing struggles.</div>
+    </div>
+    <div class="collection-card">
+      <div class="collection-era">Communism</div>
+      <div class="collection-dates">1944 – 1992</div>
+      <div class="collection-desc">A critical examination of persecution, resilience, and the role of women under Albania's Communist regime.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events" class="fade-in">
+  <div class="sec-head"><h2>Events &amp; News</h2><a href="#">Full Calendar →</a></div>
+  <div class="event-row">
+    <div class="ev-date">Ongoing</div>
+    <div class="ev-title">Guided Tours — Albanian &amp; English. For individuals, groups, and school classes.</div>
+    <div class="ev-tag">Tour</div>
+  </div>
+  <div class="event-row">
+    <div class="ev-date">Coming Soon</div>
+    <div class="ev-title">New Exhibition Opening — Follow @mig_albania on Instagram for updates</div>
+    <div class="ev-tag">Exhibition</div>
+  </div>
+  <div class="event-row">
+    <div class="ev-date">By Appointment</div>
+    <div class="ev-title">Private Group Bookings — Reserve your visit for groups of 6 or more</div>
+    <div class="ev-tag">Group</div>
+  </div>
+  <div class="event-row">
+    <div class="ev-date">Year-Round</div>
+    <div class="ev-title">Educational Programs — Workshops and talks for students and researchers</div>
+    <div class="ev-tag">Education</div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit" class="fade-in">
+  <div class="sec-head"><h2>Plan Your Visit</h2><a href="#">All Visitor Info →</a></div>
+  <div class="visit-grid">
+    <div class="visit-left">
+      <h3>How to Find Us</h3>
+      <div class="dir-step">
+        <div class="dir-num">1.</div>
+        <div class="dir-txt">Head to <strong>Rruga Shyqyri Berxolli</strong> — a small side street off <strong>Myslym Shyri</strong> in central Tirana. Look for our signs on Myslym Shyri and at the corner of Shyqyri Berxolli, across the street from the museum.</div>
+      </div>
+      <div class="dir-step">
+        <div class="dir-num">2.</div>
+        <div class="dir-txt">At the apartment building entrance, find the buzzer marked <strong>MiG</strong> and ring it — even if the building door is already open.</div>
+      </div>
+      <div class="dir-step">
+        <div class="dir-num">3.</div>
+        <div class="dir-txt">Climb <strong>four flights of stairs</strong> to <strong>Apt. 8</strong>. Signage along the stairway will guide you all the way to the door.</div>
+      </div>
+      <div class="dir-step">
+        <div class="dir-num">4.</div>
+        <div class="dir-txt"><strong>Welcome to MiG!</strong> You've arrived at Albania's first Women's Museum.</div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-label">Good to Know</div>
+        <p>
+          🪧 &nbsp;Signs on Myslym Shyri and Rruga Shyqyri Berxolli will guide you.<br>
+          🔔 &nbsp;Always ring the <strong>MiG buzzer</strong>, even if the building door is open.<br>
+          🚶 &nbsp;No elevator — access is via four flights of stairs only.<br>
+          ♿ &nbsp;Unfortunately the museum is not accessible to visitors with reduced mobility.<br>
+          🚗 &nbsp;No parking available on site.<br>
+          📞 &nbsp;Lost? Call <a href="tel:+355682023950">+355 68 202 3950</a>
+        </p>
+      </div>
+      <div style="margin-top:var(--sp-4);display:flex;gap:var(--sp-2);flex-wrap:wrap;">
+        <a href="#" class="btn btn-dark">Buy Tickets</a>
+        <a href="#" class="btn btn-light">Book a Tour</a>
+      </div>
+    </div>
+    <div class="visit-right">
+      <div class="vblock">
+        <div class="vblock-label">Address</div>
+        <p>Rruga Shyqyri Berxolli, Tiranë, Albania</p>
+        <a href="https://share.google/Xlv9bMahohT5dSmKq" target="_blank" style="margin-top:8px;">Open in Google Maps →</a>
+        <div style="margin-top:var(--sp-2);overflow:hidden;border:1px solid var(--border);">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.8!2d19.81747!3d41.32638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1350310700d9d0a5%3A0x9ac8d6af19f21b6!2sRruga%20Shyqyri%20Berxolli%2C%20Tiran%C3%AB%2C%20Albania!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s"
+            width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="vblock">
+        <div class="vblock-label">Opening Hours</div>
+        <div class="hours-row"><span>Monday – Friday</span><span>10:00 am – 5:00 pm</span></div>
+        <div class="hours-row"><span>Saturday</span><span>10:00 am – 3:00 pm</span></div>
+        <div class="hours-row closed"><span>Sunday</span><span>Closed</span></div>
+      </div>
+      <div class="vblock">
+        <div class="vblock-label">Contact</div>
+        <a href="tel:+355682023950">+355 68 202 3950</a>
+        <a href="mailto:info@womensmuseumalbania.org">info@womensmuseumalbania.org</a>
+        <a href="https://www.womensmuseumalbania.org" target="_blank">womensmuseumalbania.org</a>
+        <a href="https://instagram.com/mig_albania" target="_blank">@mig_albania on Instagram</a>
+      </div>
+      <div class="vblock">
+        <div class="vblock-label">Visitor Tips</div>
+        <p>🎓 Discounts for students, seniors &amp; groups</p>
+        <p>👨‍👩‍👧 Family-friendly environment</p>
+        <p>🧭 10-minute walk from Skanderbeg Square</p>
+      </div>
+      <div class="vblock">
+        <div class="vblock-label">Useful Links</div>
+        <a href="#">Tickets</a>
+        <a href="#">Visitor Guidelines &amp; Policies</a>
+        <a href="#">FAQs</a>
+        <a href="#">Book a Group Tour</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="fcol">
+      <img src="data:image/jpeg;base64,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" alt="MiG" style="height:40px;width:auto;filter:invert(1);margin-bottom:var(--sp-3);" />
+      <p style="font-size:0.8rem;font-weight:300;color:#555;line-height:1.75;margin-bottom:var(--sp-2);">Muzeu i Gruas<br>Women's Museum Albania<br>Rruga Shyqyri Berxolli<br>Tirana, Albania</p>
+      <a href="mailto:info@womensmuseumalbania.org" style="font-size:0.78rem;color:#555;text-decoration:underline;transition:color 0.18s;">info@womensmuseumalbania.org</a>
+    </div>
+    <div class="fcol">
+      <div class="fcol-label">Visit</div>
+      <a href="#visit">How to Find Us</a>
+      <a href="#">Tickets</a>
+      <a href="#">Hours &amp; Location</a>
+      <a href="#">Book a Tour</a>
+      <a href="#">FAQs</a>
+    </div>
+    <div class="fcol">
+      <div class="fcol-label">The Museum</div>
+      <a href="#about">About MiG</a>
+      <a href="#founder">Our Story</a>
+      <a href="#">Team</a>
+      <a href="#exhibitions">Exhibitions</a>
+      <a href="#collections">Collections</a>
+    </div>
+    <div class="fcol">
+      <div class="fcol-label">Connect</div>
+      <a href="https://instagram.com/mig_albania" target="_blank">Instagram</a>
+      <a href="https://www.womensmuseumalbania.org" target="_blank">Official Website</a>
+      <a href="tel:+355682023950">+355 68 202 3950</a>
+      <a href="#">Donate</a>
+      <a href="#">Newsletter</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Women's Museum Albania — MiG (Muzeu i Gruas). All rights reserved.</span>
+    <span>Privacy Policy &nbsp;·&nbsp; Terms of Use</span>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) { el.target.classList.add('visible'); observer.unobserve(el.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
